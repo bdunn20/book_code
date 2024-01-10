@@ -13,20 +13,15 @@ app.layout=html.Div([
             html.A('World Happiness Report Data Source',
                    href='https://worldhappiness.report',
                    target='_blank')]),
-    #dcc.RadioItems(options=happiness['region'].unique(),
-    #               value='North America'),
-    #dcc.Checklist(options=happiness['region'].unique(),
-    #               value=['North America']), #value of a checklist must be a list
     dcc.Dropdown(id='country-dropdown',
                  options=happiness['country'].unique(),
                  value='United States'),
-    dcc.Graph(id='happiness-graph')
-])
+    dcc.Graph(id='happiness_graph')])
 
 #decorator
 @app.callback(
-    Output(component_id='happiness_graph', component_property='figure'),
-    Input(component_id='country-dropdown', component_property='value')
+    Output('happiness_graph', 'figure'),
+    Input('country-dropdown', 'value')
 )
 
 def update_graph(selected_country):
