@@ -22,11 +22,13 @@ app.layout=html.Div([
                        'happiness_rank': 'Hapiness Rank'
                    },
                    value='happiness_score'), # initial value
-    dcc.Graph(id='happiness_graph')])
+    dcc.Graph(id='happiness_graph'),
+    html.Div(id='average-div')])
 
 #decorator
 @app.callback(
     Output('happiness_graph', 'figure'),
+    Output('average-div', 'children'),
     Input('country-dropdown', 'value'),
     Input('data-radio', 'value')
 )
@@ -37,7 +39,8 @@ def update_graph(selected_country, selected_data):
     line_fig=px.line(filtered_happiness,
                      x='year', y=selected_data,
                      title=f'{selected_data} in {selected_country}')
-    return line_fig
+    selected_average=filtered_happiness[selected_data].mean()
+    return line_fig, f'The average {selected_data} for {selected_country} is {selected_average}'
 
 
 if __name__ == '__main__':
