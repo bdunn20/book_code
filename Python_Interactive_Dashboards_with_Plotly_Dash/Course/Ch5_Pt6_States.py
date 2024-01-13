@@ -20,7 +20,7 @@ app.layout=html.Div([
     dcc.RadioItems(id='data-radio',
                    options={ #must be list or dictionary. keys below are columns in dataset
                        'happiness_score': 'Happiness Score',
-                       'happiness_rank': 'Hapiness Rank'
+                       'happiness_rank': 'Happiness Rank'
                    },
                    value='happiness_score'), # initial value
     html.Br(), # line break for cleaner appearance
